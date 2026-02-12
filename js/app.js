@@ -91,18 +91,15 @@
     window.setTimeout(() => (locked = false), 650);
   }
 
-  // Prevent “free wheel” and force steps
-  scroller.addEventListener("wheel", (e) => {
-    if (locked) return;
+  // scroller.addEventListener("wheel", (e) => {
+  //   if (locked) return;
 
-    // threshold para trackpad suave
-    if (Math.abs(e.deltaY) < 12) return;
+  //   if (Math.abs(e.deltaY) < 12) return;
 
-    e.preventDefault();
-    goTo(index + (e.deltaY > 0 ? 1 : -1));
-  }, { passive: false });
+  //   e.preventDefault();
+  //   goTo(index + (e.deltaY > 0 ? 1 : -1));
+  // }, { passive: false });
 
-  // Navbar jumps
   navLinks.forEach(a => {
     a.addEventListener("click", (e) => {
       e.preventDefault();
@@ -112,7 +109,6 @@
     });
   });
 
-  // Button jumps (ej: volver)
   document.querySelectorAll("[data-goto]").forEach(btn => {
     btn.addEventListener("click", () => {
       const hash = btn.getAttribute("data-goto");
@@ -122,7 +118,6 @@
     });
   });
 
-  // Tilt micro (cards)
   const tilts = Array.from(document.querySelectorAll("[data-tilt]"));
   let mx = 0, my = 0, rafTilt = null;
 
@@ -273,4 +268,3 @@ if (ring && matchMedia("(hover:hover) and (pointer:fine)").matches) {
     if (e.target && e.target.closest(hoverables)) ring.classList.remove("is-hover");
   }, { passive: true });
 }
-

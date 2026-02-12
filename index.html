@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Galería • Recorrido</title>
-
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles/styles.css" />
 </head>
 
@@ -49,67 +49,93 @@
 
       <div class="content">
         <div class="lobby-card reveal">
-            <p class="lobby-eyebrow">ENTRADA</p>
-            <h1 class="lobby-title">RECEPCIÓN</h1>
+          <h1 class="lobby-title">RECEPCIÓN</h1>
+          <p class="lobby-eyebrow">-- Maktub gallery --</p>
             <p class="lobby-tagline">
               Donde la calma y el oficio se encuentran.
             </p>
         </div>
 
-        <button class="btn btn--primary" data-goto="#gallery">
-          Comenzar recorrido <span aria-hidden="true">→</span>
-        </button>
+        <a class="btn btn--primary" href="#gallery">Comenzar recorrido →</a>
+
       </div>
 
     </section>
 
-    <!-- 2) GALERÍA -->
-    <section id="gallery" class="scene scene--gallery">
-      <div class="scene__bg layer" data-speed="0.06"></div>
+    <!-- 2) GALERÍA (INTRO) -->
+    <section id="gallery" class="scene scene--galleryIntro">
+      <div class="scene__photo" aria-hidden="true"></div>
+      <div class="scene__grain"></div>    
+
+      <div class="content content--galleryIntro">
+        <h2 class="title title--h2 reveal">GALERÍA</h2>   
+
+        <p class="lead reveal">
+          Frente a ti se abren distintas salas.<br />
+          Cada una guarda un lenguaje, una técnica, una forma de mirar.<br />
+          Elige una puerta y deja que el recorrido te guíe.
+        </p>
+        <a class="btn btn--primary" href="#gallery-room-01">
+          Avanzar a las salas →
+        </a>
+      </div>
+    </section>
+
+    <!-- 2B) GALERÍA (ROOMS / DOORS) -->
+    <section id="gallery-room-01" class="scene scene--door door--left">
       <div class="scene__grain"></div>
-
-      <div class="content content--wide">
-        <p class="kicker reveal">Obras</p>
-        <h2 class="title title--h2 reveal">Galería</h2>
-
-        <div class="grid">
-          <article class="card reveal" data-tilt>
-            <div class="art art--macrame layer" data-speed="0.12"></div>
-            <h3 class="card__title">Sala 01</h3>
-            <p class="card__text">Macramé: Nudos, sombra y paciencia.</p>
-          </article>
-
-          <article class="card reveal" data-tilt>
-            <div class="art art--tapestry layer" data-speed="0.10"></div>
-            <h3 class="card__title">Sala 02</h3>
-            <p class="card__text">Tapiz: Trama rústica y silencio.</p>
-          </article>
-
-          <article class="card reveal" data-tilt>
-            <div class="art art--dream layer" data-speed="0.11"></div>
-            <h3 class="card__title">Sala 03</h3>
-            <p class="card__text">Atrapasueños: Geometría suave y ritual.</p>
-          </article>
-        </div>
+      <div class="door__panel">
+        <p class="kicker">Sala 01</p>
+        <h2 class="title title--h2">Macramé</h2>
+        <p class="lead">Nudos, sombra y paciencia.</p>
+        <a class="btn btn--primary" href="#gallery-room-01">
+          Ingresar →
+        </a>
+        <a class="btn btn--primary" href="#gallery-room-02">
+          Siguiente Sala →
+        </a>
+      </div>
+    </section>
+    
+    <section id="gallery-room-02" class="scene scene--door door--right">
+      <div class="scene__grain"></div>
+      <div class="door__panel">
+        <p class="kicker">Sala 02</p>
+        <h2 class="title title--h2">Tapiz</h2>
+        <p class="lead">Trama rústica y silencio.</p>
+        <a class="btn btn--primary" href="#gallery-room-02">
+          Ingresar →
+        </a>
+        <a class="btn btn--primary" href="#gallery-room-03">
+          Siguiente Sala →
+        </a>
+      </div>
+    </section>
+    
+    <section id="gallery-room-03" class="scene scene--door door--left">
+      <div class="scene__grain"></div>
+      <div class="door__panel">
+        <p class="kicker">Sala 03</p>
+        <h2 class="title title--h2">Atrapasueños</h2>
+        <p class="lead">Geometría suave y ritual.</p>
+        <a class="btn btn--primary" href="#gallery-room-03">
+          Ingresar →
+        </a>
+        <a class="btn btn--primary" href="#workshops">
+          Avanzar al Taller →
+        </a>
       </div>
     </section>
 
-    <!-- 3) TALLERES -->
+    <!-- 3) TALLER -->
     <section id="workshops" class="scene scene--workshops">
       <div class="scene__bg layer" data-speed="0.05"></div>
       <div class="scene__fog layer" data-speed="0.14"></div>
       <div class="scene__grain"></div>
 
-      <!-- (opcional) video de fondo: dejalo comentado hasta tener assets livianos -->
-      <!--
-      <video class="bgvideo" autoplay muted loop playsinline>
-        <source src="./assets/videos/workshops.mp4" type="video/mp4" />
-      </video>
-      -->
-
       <div class="content">
         <p class="kicker reveal">Proceso</p>
-        <h2 class="title title--h2 reveal">Talleres</h2>
+        <h2 class="title title--h2 reveal">Taller</h2>
         <p class="lead reveal">
           Materiales nobles. Fibra, madera, tiempo. El movimiento es suave:
           capas que reaccionan al scroll.
@@ -168,7 +194,7 @@
           </label>
 
           <div class="actions">
-            <button class="btn" type="button" data-goto="#reception">Volver a Recepción</button>
+            <a class="btn" href="#reception">Volver a Recepción</a>
           </div>
         </form>
       </div>
