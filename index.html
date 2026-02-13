@@ -82,48 +82,42 @@
     </section>
 
     <!-- 2B) GALERÍA (ROOMS / DOORS) -->
-    <section id="gallery-room-01" class="scene scene--door door--left">
+    <section id="gallery-room-01" class="scene scene--door door--right is-panel-right">
       <div class="scene__grain"></div>
       <div class="door__panel">
         <p class="kicker">Sala 01</p>
         <h2 class="title title--h2">Macramé</h2>
         <p class="lead">Nudos, sombra y paciencia.</p>
-        <a class="btn btn--primary" href="#gallery-room-01">
-          Ingresar →
-        </a>
-        <a class="btn btn--primary" href="#gallery-room-02">
-          Siguiente Sala →
-        </a>
+        <div class="door__panel--btns">
+          <a class="btn btn--primary" href="#gallery-room-01"> Ingresar →</a>
+          <a class="btn btn--primary" href="#gallery-room-02"> Siguiente Sala →</a>
+        </div>
       </div>
     </section>
     
-    <section id="gallery-room-02" class="scene scene--door door--right">
+    <section id="gallery-room-02" class="scene scene--door door--left">
       <div class="scene__grain"></div>
       <div class="door__panel">
         <p class="kicker">Sala 02</p>
         <h2 class="title title--h2">Tapiz</h2>
         <p class="lead">Trama rústica y silencio.</p>
-        <a class="btn btn--primary" href="#gallery-room-02">
-          Ingresar →
-        </a>
-        <a class="btn btn--primary" href="#gallery-room-03">
-          Siguiente Sala →
-        </a>
+        <div class="door__panel--btns is-left">
+          <a class="btn btn--primary" href="#gallery-room-02"> Ingresar →</a>
+          <a class="btn btn--primary" href="#gallery-room-03"> Siguiente Sala →</a>
+        </div>
       </div>
     </section>
     
-    <section id="gallery-room-03" class="scene scene--door door--left">
+    <section id="gallery-room-03" class="scene scene--door door--right is-panel-right">
       <div class="scene__grain"></div>
       <div class="door__panel">
         <p class="kicker">Sala 03</p>
         <h2 class="title title--h2">Atrapasueños</h2>
         <p class="lead">Geometría suave y ritual.</p>
-        <a class="btn btn--primary" href="#gallery-room-03">
-          Ingresar →
-        </a>
-        <a class="btn btn--primary" href="#workshops">
-          Avanzar al Taller →
-        </a>
+        <div class="door__panel--btns">
+          <a class="btn btn--primary" href="#gallery-room-03"> Ingresar →</a>
+          <a class="btn btn--primary" href="#workshops"> Siguiente Sala →</a>
+        </div>
       </div>
     </section>
 
@@ -133,7 +127,7 @@
       <div class="scene__fog layer" data-speed="0.14"></div>
       <div class="scene__grain"></div>
 
-      <div class="content">
+      <div class="content content--workshops">
         <p class="kicker reveal">Proceso</p>
         <h2 class="title title--h2 reveal">Taller</h2>
         <p class="lead reveal">
@@ -155,7 +149,7 @@
       <div class="scene__bg layer" data-speed="0.04"></div>
       <div class="scene__grain"></div>
 
-      <div class="content">
+      <div class="content content--manifesto">
         <p class="kicker reveal">Origen</p>
         <h2 class="title title--h2 reveal">Manifiesto</h2>
         <p class="lead reveal">
@@ -194,7 +188,7 @@
           </label>
 
           <div class="actions">
-            <a class="btn" href="#reception">Volver a Recepción</a>
+            <a class="btn btn--primary" href="#reception">Volver a Recepción</a>
           </div>
         </form>
       </div>

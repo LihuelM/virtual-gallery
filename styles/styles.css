@@ -144,7 +144,11 @@ body{
 }
 
 /* Capas para parallax */
-.layer{ will-change: transform; transform: translate3d(0,0,0); }
+/* Apaga parallax de capas (mínimo) */
+.layer{
+  transform: none !important;
+  will-change: auto !important;
+}
 
 .scene__bg{
   position:absolute;
@@ -201,10 +205,9 @@ body{
   font-family: var(--serif);
   font-weight: 600;
   letter-spacing: .01em;
-  font-size: 42px;
+  font-size: 50px;
   line-height: 1.05;
 }
-.title--h2{ font-size: 38px; }
 .lead{
   margin:0;
   color: rgba(242,242,242,.82);
@@ -358,7 +361,7 @@ body{
   inset: 0;
   z-index: 0;
 
-  background-image: url("../assets/img/galeria-fondo.png");
+  background-image: url("../assets/img/galeria-fondo2.jpg");
   background-size: cover;
   background-position: right center;
   background-repeat: no-repeat;
@@ -371,22 +374,22 @@ body{
   position:absolute;
   inset:0;
   background:
-    radial-gradient(1200px 800px at 20% 35%, rgba(0,0,0,.60), transparent 60%),
+    radial-gradient(1200px 800px at 20% 35%, rgba(0,0,0,.60), transparent 40%),
     linear-gradient(
       90deg,
       rgba(0,0,0,.86) 0%,
-      rgba(0,0,0,.70) 30%,
+      rgba(0,0,0,.50) 30%,
       rgba(0,0,0,.36) 55%,
       rgba(0,0,0,0) 100%
     );
 }
 .scene--galleryIntro{
   --padTop:    100px;
-  --padRight:  72px;
-  --padBottom: 50px;
+  --padRight:  0px;
+  --padBottom: 35px;
   --padLeft:   0px;
 
-  --titleShiftY:  55px;   
+  --titleShiftY:  20px;   
   --leadShiftY:   0px;    
   --btnShiftY:    0px;    
 
@@ -396,10 +399,6 @@ body{
   --safeTop: 0px; 
 }
 
-
-.content--galleryIntro{
-  padding: var(--padY) var(--padX);
-}
 
 .content--galleryIntro{
   position: relative;
@@ -429,7 +428,7 @@ body{
 
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(54px, 6.2vw, 96px);
+  font-size: clamp(54px, 6.2vw, 80px);
   letter-spacing: .12em;
   text-transform: uppercase;
   line-height: 0.95;
@@ -469,7 +468,7 @@ body{
 
 #gallery-room-01{ background-image: url("../assets/img/sala1.png"); }
 #gallery-room-02{ background-image: url("../assets/img/sala2.png"); }
-#gallery-room-03{ background-image: url("../assets/img/sala3.png"); }
+#gallery-room-03{ background-image: url("../assets/img/sala3v2.jpg"); }
 
 .scene.scene--door{
   position: relative;
@@ -528,6 +527,91 @@ body{
   );
 }
 
+/* Posicionamiento de Panel de textos */
+.scene--door{
+  --panelX: 72px;           
+  --panelY: 120px;          
+  --panelW: min(560px, 86vw);
+  --panelAlign: left;      
+}
+
+.scene--door .door__panel{
+  width: var(--panelW);
+
+  top: var(--panelY);
+  left: var(--panelX);
+  right: auto;
+
+  text-align: left;
+}
+
+.scene--door.is-panel-right .door__panel{
+  left: auto;
+  right: var(--panelX);
+  text-align: right;
+}
+
+/* Sala 1 (panel a la derecha) */
+#gallery-room-01{
+  --panelX: 160px;
+  --panelY: 235px;
+}
+
+/* Sala 2  */
+#gallery-room-02{
+  --panelX: 100px;
+  --panelY: 245px;
+}
+
+/* Sala 3 (panel a la derecha) */
+#gallery-room-03{
+  --panelX: 160px;
+  --panelY: 160px;
+}
+
+/* Botones dentro de puertas */
+.scene--door .door__panel--btns{
+  display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    padding: 20px 0px;
+}
+.scene--door .door__panel--btns.is-left{
+  align-items: flex-start;
+} 
+
+/* ======================================================================
+   TALLER — Fondo imagen (mínimo, sin romper otras escenas)
+   ====================================================================== */
+.scene--workshops{
+  place-items: stretch;
+}
+
+.scene--workshops .scene__bg{
+  position: absolute;
+  z-index: 0;
+
+  background-image: url("../assets/img/taller2.jpg");
+  background-size: cover;
+  background-position: 50% 15%;
+  background-repeat: no-repeat;
+
+  filter: contrast(1.05) saturate(.9) brightness(.8);
+}
+
+.scene--workshops .scene__bg::after{
+  content:"";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 600px at 30% 35%, rgba(0,0,0,.55), transparent 60%),
+    linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.25) 55%, rgba(0,0,0,0) 100%);
+}
+
+/* ==========================================================================
+   COMPONENTS: CHIPS, QUOTE, FORM
+   ========================================================================== */
 
 /* Chips */
 .chips{ margin-top: 16px; display:flex; flex-wrap:wrap; gap:8px; }
@@ -584,7 +668,6 @@ body{
   outline: 2px solid rgba(201,168,134,.55);
   outline-offset: 2px;
 }
-
 
 /* ==========================================================================
    REVEALS
@@ -664,8 +747,11 @@ body{
 
 /* Mobile */
 @media (max-width: 900px){
-  .scene--door.door--left .door__panel,
-  .scene--door.door--right .door__panel{
+  .scene--door{
+    --panelX: 16px;
+    --panelY: auto; 
+  }
+  .scene--door .door__panel{
     left: 16px;
     right: 16px;
     top: auto;
