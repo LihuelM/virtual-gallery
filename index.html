@@ -18,7 +18,7 @@
   <nav class="nav" aria-label="Navegación de salas">
     <a href="#reception" data-nav>Recepción</a>
     <a href="#gallery" data-nav>Galería</a>
-    <a href="#workshops" data-nav>Talleres</a>
+    <a href="#workshops" data-nav>Atelier</a>
     <a href="#manifesto" data-nav>Manifiesto</a>
     <a href="#farewell" data-nav>Despedida</a>
   </nav>
@@ -123,27 +123,71 @@
 
     <!-- 3) TALLER -->
     <section id="workshops" class="scene scene--workshops">
-      <div class="scene__bg layer" data-speed="0.05"></div>
-      <div class="scene__fog layer" data-speed="0.14"></div>
-      <div class="scene__grain"></div>
+  <div class="scene__bg layer" data-speed="0.05"></div>
+  <div class="scene__fog layer" data-speed="0.14"></div>
+  <div class="scene__grain"></div>
 
-      <div class="content content--workshops">
-        <p class="kicker reveal">Proceso</p>
-        <h2 class="title title--h2 reveal">Taller</h2>
-        <p class="lead reveal">
-          Materiales nobles. Fibra, madera, tiempo. El movimiento es suave:
-          capas que reaccionan al scroll.
-        </p>
+  <!-- IZQUIERDA (se mantiene) -->
+  <div class="content content--workshops atelierLeft">
+    <p class="kicker reveal">Proceso</p>
+    <h2 class="title title--h2 reveal">Atelier</h2>
 
-        <div class="chips reveal">
-          <span class="chip">fibra</span>
-          <span class="chip">nudo</span>
-          <span class="chip">trama</span>
-          <span class="chip">luz baja</span>
-        </div>
+    <p class="lead reveal">
+      Taller de creación artística, entendido como espacio artesanal, 
+      donde el oficio y el proceso creativo, dan forma a cada pieza.<br>
+      <br>
+      Lugar de encuentro, entre el creador, la materia y el tiempo.
+    </p>
+  </div>
+
+  <!-- CENTRO (carrusel bajo el óculo) -->
+  <div class="atelierCenter" data-atelier-wheel aria-label="Carrusel de materiales">
+    <div class="atelierWheel">
+      <button class="atelierArrow atelierArrow--left" type="button" data-at-prev aria-label="Anterior">←</button>
+      <button class="atelierArrow atelierArrow--right" type="button" data-at-next aria-label="Siguiente">→</button>
+
+      <div class="atelierWheel__stage">
+        <!-- Items (se llenan con imágenes reales) -->
+        <figure class="atelierCard" data-key="ramas">
+          <img class="atelierCard__img" alt="Ramas" />
+        </figure>
+
+        <figure class="atelierCard" data-key="troncos">
+          <img class="atelierCard__img" alt="Troncos" />
+        </figure>
+
+        <figure class="atelierCard" data-key="cuerdas">
+          <img class="atelierCard__img" alt="Cuerdas" />
+        </figure>
+
+        <figure class="atelierCard" data-key="plantas">
+          <img class="atelierCard__img" alt="Plantas" />
+        </figure>
+
+        <figure class="atelierCard" data-key="piedra">
+          <img class="atelierCard__img" alt="Piedra" />
+        </figure>
+
+        <figure class="atelierCard" data-key="tierra">
+          <img class="atelierCard__img" alt="Tierra" />
+        </figure>
       </div>
-    </section>
+    </div>
+  </div>
 
+  <!-- DERECHA (texto suelto, cambia con el carrusel) -->
+  <aside class="atelierRight" aria-label="Detalle del material">
+    <div class="atelierInfo" data-at-info>
+      <p class="kicker atelierInfo__kicker">Materia viva</p>
+      <h3 class="atelierInfo__title" data-at-title>Material</h3>
+      <p class="atelierInfo__desc" data-at-desc>—</p>
+      <p class="atelierInfo__meta" data-at-meta>—</p>
+    </div>
+  </aside>
+</section>
+
+
+    
     <!-- 4) MANIFIESTO -->
     <section id="manifesto" class="scene scene--manifesto">
       <div class="scene__bg layer" data-speed="0.04"></div>

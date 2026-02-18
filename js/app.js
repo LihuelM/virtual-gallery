@@ -248,6 +248,136 @@
     lockExperience(false);
   }
 
+    // ---------------------------
+  // Atelier: 3D Wheel + Info Sync (infinite)
+  // ---------------------------
+  function initAtelier3DWheel(){
+    const root = document.querySelector("[data-atelier-wheel]");
+    if (!root) return;
+
+    const cards = Array.from(root.querySelectorAll(".atelierCard"));
+    const btnPrev = document.querySelector("[data-at-prev]");
+    const btnNext = document.querySelector("[data-at-next]");
+
+    const info = document.querySelector("[data-at-info]");
+    const elTitle = document.querySelector("[data-at-title]");
+    const elDesc  = document.querySelector("[data-at-desc]");
+    const elMeta  = document.querySelector("[data-at-meta]");
+
+    if (!cards.length || !info || !elTitle || !elDesc || !elMeta) return;
+
+    // 1) DATA (cambiá src por tus fotos)
+    const DATA = {
+      ramas:  { title: "Ramas",  desc: "Textura y quiebre. Lo imperfecto guía la mano.", meta: "textura / quiebre", src: "assets/img/atelier/ramas.jpg" },
+      troncos:{ title: "Troncos",desc: "Soporte y peso. Una base para construir.",      meta: "peso / soporte",  src: "assets/img/atelier/troncos.jpg" },
+      cuerdas:{ title: "Cuerdas",desc: "Tensión y nudo. Unión, ritmo, repetición.",     meta: "tensión / nudo",  src: "assets/img/atelier/cuerdas.jpg" },
+      plantas:{ title: "Plantas",desc: "Cuidado y pulso. Crece con tiempo.",            meta: "ritmo / cuidado",  src: "assets/img/atelier/plantas.jpg" },
+      piedra: { title: "Piedra", desc: "Silencio y base. La forma aparece lento.",     meta: "silencio / base",  src: "assets/img/atelier/piedras.jpg" },
+      tierra: { title: "Tierra", desc: "Origen y mezcla. Materia que mancha y une.",   meta: "origen / mezcla",  src: "assets/img/atelier/plumas.jpg" },
+    };
+
+    // 2) hydrate images
+    cards.forEach((card) => {
+      const key = card.getAttribute("data-key");
+      const img = card.querySelector(".atelierCard__img");
+      if (DATA[key] && img) img.src = DATA[key].src;
+    });
+
+    let active = 0;
+    let timer = null;
+
+    const AUTOPLAY_MS = 2600;
+    const theta = (2 * Math.PI) / cards.length;
+
+    function mod(n, m){ return ((n % m) + m) % m; }
+
+    function setInfoByIndex(idx){
+      const key = cards[idx].getAttribute("data-key");
+      const d = DATA[key];
+      if (!d) return;
+
+      info.classList.add("is-out");
+      window.setTimeout(() => {
+        elTitle.textContent = d.title;
+        elDesc.textContent  = d.desc;
+        elMeta.textContent  = d.meta;
+        info.classList.remove("is-out");
+      }, 170);
+    }
+
+    function render(){
+      // radio “seguro”: no rompe layout, da buen 3D sin conflictos
+      const radius = 200;
+
+      cards.forEach((card, i) => {
+        const rel = i - active;
+        const angle = rel * theta;
+
+        // normalizar para el “lado más corto”
+        const n = cards.length;
+        let relNorm = rel;
+        if (rel >  n/2) relNorm = rel - n;
+        if (rel < -n/2) relNorm = rel + n;
+
+        const abs = Math.abs(relNorm);
+
+        // Solo 3 visibles: centro y vecinos
+        const visible = abs <= 1;
+        const opacity = abs === 0 ? 1 : 0.58;
+
+        // 3D: rueda + leve tilt + profundidad
+        // (translate(-50%,-50%) va en la propia transform para centrar)
+        const rotY = angle * (180 / Math.PI);
+        const tiltX = -6;
+
+        card.style.opacity = visible ? String(opacity) : "0";
+        card.style.zIndex = abs === 0 ? "5" : "3";
+
+        const scale = abs === 0 ? 1.08 : 0.92;
+
+        card.style.transform =
+          `translate3d(-50%, -50%, 0) rotateX(${tiltX}deg) rotateY(${rotY}deg) translateZ(${radius}px) scale(${scale})`;
+      });
+
+      setInfoByIndex(active);
+    }
+
+    function next(){ active = mod(active + 1, cards.length); render(); }
+    function prev(){ active = mod(active - 1, cards.length); render(); }
+
+    function stop(){ if (timer) window.clearInterval(timer); timer = null; }
+    function start(){ stop(); timer = window.setInterval(next, AUTOPLAY_MS); }
+
+    btnNext?.addEventListener("click", () => { next(); start(); });
+    btnPrev?.addEventListener("click", () => { prev(); start(); });
+
+    // pausa al hover
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+
+    // swipe simple
+    let sx = 0, dragging = false;
+    root.addEventListener("touchstart", (e) => {
+      sx = e.touches[0].clientX;
+      dragging = true;
+      stop();
+    }, { passive: true });
+
+    root.addEventListener("touchend", (e) => {
+      if (!dragging) return;
+      dragging = false;
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 35) (dx < 0 ? next() : prev());
+      start();
+    }, { passive: true });
+
+    render();
+    start();
+  }
+
+  initAtelier3DWheel();
+
+
   // ---------------------------
   // Init
   // ---------------------------

@@ -201,7 +201,7 @@ body{
   font-size: 11px;
 }
 .title{
-  margin:0 0 10px;
+  margin:0 0 20px;
   font-family: var(--serif);
   font-weight: 600;
   letter-spacing: .01em;
@@ -608,6 +608,218 @@ body{
     radial-gradient(900px 600px at 30% 35%, rgba(0,0,0,.55), transparent 60%),
     linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.25) 55%, rgba(0,0,0,0) 100%);
 }
+
+.content.content--workshops{
+  width: max(350px, 20%);
+      margin-top: 50px;
+}
+
+/* =========================================================
+   ATELIER — escena con carrusel centrado + texto derecho
+   ========================================================= */
+
+.scene--workshops{
+  /* Ajuste fino de posición (tocás solo estas 3 si querés) */
+  --atelier-center-y: 8px;   /* + abajo / - arriba (carrusel) */
+  --atelier-right-x: -10px;  /* + derecha / - izquierda (texto) */
+  --atelier-right-y: 0px;    /* + abajo / - arriba (texto) */
+}
+
+/* IZQUIERDA: queda como estaba, pero fijo en la escena */
+.scene--workshops .atelierLeft{
+  position: absolute;
+  left: clamp(18px, 4vw, 70px);
+  top: 25%;
+  width: min(260px, 20vw);
+  z-index: 3;
+}
+
+/* CENTRO: debajo del óculo */
+.scene--workshops .atelierCenter{
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, calc(-50% + var(--atelier-center-y)));
+  z-index: 4;
+  pointer-events: none; /* evitamos interferencias; flechas reactivan pointer */
+}
+
+
+.atelierWheel{
+  position: relative;
+  width: min(440px, 48vw);
+  height: 280px;
+  pointer-events: auto;
+  
+  --arrow-offset-y: 80px;   /* distancia desde el borde inferior del carrusel */
+  --arrow-gap: 14px;        /* separación entre flechas */
+  --arrow-size: 42px;
+}
+
+.atelierArrow{
+  position: absolute;
+  left: 50%;
+  bottom: calc(-1 * var(--arrow-offset-y));
+  width: var(--arrow-size);
+  height: var(--arrow-size);
+
+  display: grid;
+  place-items: center;
+
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(242,242,242,.18);
+  background: rgba(0,0,0,.12);
+  color: rgba(242,242,242,.88);
+  cursor: pointer;
+  z-index: 8;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  /* base transform (centrado) */
+  transform: translateX(-50%);
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.atelierArrow:hover{
+  background: rgba(0,0,0,.20);
+}
+
+/* feedback sin moverlo de lugar */
+.atelierArrow:active{
+  background: rgba(0,0,0,.26);
+}
+
+.atelierArrow--left{
+  transform: translateX(calc(-50% - (var(--arrow-size) / 2) - var(--arrow-gap)));
+}
+
+.atelierArrow--right{
+  transform: translateX(calc(-50% + (var(--arrow-size) / 2) + var(--arrow-gap)));
+}
+
+/* Stage 3D */
+.atelierWheel__stage{
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  perspective: 1100px;
+  perspective-origin: 50% 45%;
+}
+
+/* Card 3D */
+.atelierCard{
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  width: clamp(120px, 16vw, 160px);
+  height: clamp(120px, 16vw, 160px);
+  transform-style: preserve-3d;
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+
+  /* sin contenedor visible */
+  background: transparent;
+  border: 0;
+
+  /* JS setea transform/opacity/z-index */
+  opacity: 0;
+  filter: saturate(1.02) contrast(1.02);
+  will-change: transform, opacity;
+  transition:
+    transform 600ms cubic-bezier(.2,.85,.2,1),
+    opacity 420ms cubic-bezier(.2,.85,.2,1);
+}
+
+.atelierCard__img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+
+  /* look integrado */
+  border-radius: 12px;
+  box-shadow:
+    0 40px 90px rgba(0,0,0,.55),
+    0 10px 24px rgba(0,0,0,.35);
+}
+
+/* DERECHA: texto suelto */
+.scene--workshops .atelierRight{
+  position: absolute;
+  right: clamp(18px, 0vw, 70px);
+  top: 58%;
+  transform: translate(calc(var(--atelier-right-x)), calc(-50% + var(--atelier-right-y)));
+  width: min(300px, 20vw);
+  z-index: 5;
+}
+
+.atelierInfo__kicker{
+  opacity: .75;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin: 0 0 10px;
+}
+
+.atelierInfo__title{
+  margin: 0 0 10px;
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.05;
+}
+
+.atelierInfo__desc{
+  margin: 0 0 14px;
+  color: rgba(242,242,242,.78);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.atelierInfo__meta{
+  margin: 0;
+  color: rgba(242,242,242,.65);
+  font-size: 12.5px;
+  letter-spacing: .02em;
+}
+
+/* Fade + slide del panel derecho */
+.atelierInfo{
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+.atelierInfo.is-out{
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Mobile */
+@media (max-width: 980px){
+  .scene--workshops .atelierLeft{
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: min(720px, 92vw);
+    margin: 110px auto 18px;
+  }
+  .scene--workshops .atelierCenter{
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: 0 auto;
+  }
+  .scene--workshops .atelierRight{
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: min(720px, 92vw);
+    margin: 14px auto 0;
+  }
+}
+
 
 /* ==========================================================================
    COMPONENTS: CHIPS, QUOTE, FORM
