@@ -249,7 +249,7 @@ body{
       rgba(0,0,0,.52) 72%,
       rgba(0,0,0,.72) 100%
       ),
-    url("../assets/img/espiral-recepcion1.png");
+    url("../assets/img/bg/recepcion.png");
 
   background-size: cover;
   background-position: 50% 50%;
@@ -361,7 +361,7 @@ body{
   inset: 0;
   z-index: 0;
 
-  background-image: url("../assets/img/galeria-fondo2.jpg");
+  background-image: url("../assets/img/bg/galeria.jpg");
   background-size: cover;
   background-position: right center;
   background-repeat: no-repeat;
@@ -466,9 +466,9 @@ body{
    GALLERY ROOMS — DOORS (cada puerta es una SCENE)
    ========================================================================== */
 
-#gallery-room-01{ background-image: url("../assets/img/sala1.png"); }
-#gallery-room-02{ background-image: url("../assets/img/sala2.png"); }
-#gallery-room-03{ background-image: url("../assets/img/sala3v2.jpg"); }
+#gallery-room-01{ background-image: url("../assets/img/galeria/sala1.png"); }
+#gallery-room-02{ background-image: url("../assets/img/galeria/sala2.png"); }
+#gallery-room-03{ background-image: url("../assets/img/galeria/sala3.jpg"); }
 
 .scene.scene--door{
   position: relative;
@@ -592,7 +592,7 @@ body{
   position: absolute;
   z-index: 0;
 
-  background-image: url("../assets/img/taller2.jpg");
+  background-image: url("../assets/img/bg/atelier.jpg");
   background-size: cover;
   background-position: 50% 15%;
   background-repeat: no-repeat;
@@ -822,30 +822,8 @@ body{
 
 
 /* ==========================================================================
-   COMPONENTS: CHIPS, QUOTE, FORM
+   COMPONENTS: FORM
    ========================================================================== */
-
-/* Chips */
-.chips{ margin-top: 16px; display:flex; flex-wrap:wrap; gap:8px; }
-.chip{
-  padding: 8px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(242,242,242,.14);
-  background: rgba(255,255,255,.04);
-  font-size: 12px;
-  color: rgba(242,242,242,.78);
-}
-
-/* Quote */
-.quote{
-  margin: 18px 0 0;
-  padding: 14px 16px;
-  border-left: 2px solid rgba(242,242,242,.20);
-  background: rgba(0,0,0,.18);
-  border-radius: var(--radius-sm);
-  color: rgba(242,242,242,.82);
-  font-family: var(--serif);
-}
 
 /* Form */
 .form{ margin-top: 16px; display:grid; gap: 12px; max-width: 520px; }
