@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Galería • Manifiesto</title>
+
+  <!-- Igual que tu index -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/manifesto.css">
+
+</head>
+
+<body class="page page--manifesto">
+  <!-- mismos layers que usás en el index (si existen en main/app.js) -->
+  <div class="spotlight" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="Navegación de salas">
+    <a href="./index.html#reception">Recepción</a>
+    <a href="./index.html#gallery">Galería</a>
+    <a href="./index.html#workshops">Atelier</a>
+    <a href="./manifesto.html" class="is-active">Manifiesto</a>
+    <a href="./index.html#farewell">Despedida</a>
+  </nav>
+
+  <main class="pageMain" aria-label="Manifiesto">
+    <section class="scene scene--manifesto" aria-label="Sección Manifiesto">
+      <div class="scene__bg" aria-hidden="true"></div>
+      <div class="scene__grain" aria-hidden="true"></div>
+
+      <div class="content content--manifesto">
+        <h1 class="title title--h2">Manifiesto</h1>
+
+        <!-- texto ajustado para 1 pantalla -->
+        <p class="lead">
+          Más que una galería, este es un espacio de rehabilitación creativa.
+          Aquí no se exhiben obras terminadas, sino una transformación en movimiento.<br><br>
+
+          Creemos que el acto de crear es una forma de reconstrucción: cada obra registra un momento de crisis,
+          búsqueda o cambio.<br><br>
+
+          Aquí, el proceso importa más que el resultado. El error es parte del tratamiento.
+          La pausa también es avance.<br><br>
+
+          No se exhibe perfección: se honra la búsqueda. Quien recorre esta galería no busca respuestas;
+          se convierte en testigo del proceso… y ser testigo también transforma.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn--primary" href="./index.html#gallery" aria-label="Volver al recorrido">
+            Volver al recorrido →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

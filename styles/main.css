@@ -420,7 +420,8 @@ body{
     var(--padLeft);
 }
 
-.scene--galleryIntro .title{
+.scene--galleryIntro .title,
+.scene--workshops .title{
   grid-column: 1 / -1;
   margin: 0;
   position: relative;
@@ -582,7 +583,7 @@ body{
 } 
 
 /* ======================================================================
-   TALLER — Fondo imagen (mínimo, sin romper otras escenas)
+   ATELIER 
    ====================================================================== */
 .scene--workshops{
   place-items: stretch;
@@ -614,36 +615,60 @@ body{
       margin-top: 50px;
 }
 
+.scene--workshops .title{
+  position: relative;
+  top: var(--titleShiftY);
+}
+
+.scene--workshops .lead{
+  position: relative;
+  top: var(--leadShiftY);
+}
+
+
 /* =========================================================
    ATELIER — escena con carrusel centrado + texto derecho
    ========================================================= */
 
 .scene--workshops{
-  /* Ajuste fino de posición (tocás solo estas 3 si querés) */
-  --atelier-center-y: 8px;   /* + abajo / - arriba (carrusel) */
-  --atelier-right-x: -10px;  /* + derecha / - izquierda (texto) */
-  --atelier-right-y: 0px;    /* + abajo / - arriba (texto) */
+  --panelLeftX: clamp(18px, 4vw, 70px);
+  --panelLeftY: 25%;                 /* top */
+  --panelLeftW: min(260px, 20vw);    /* width */
+
+  /* galleryIntro */
+  --titleShiftY: -34px;
+  --leadShiftY: 60px;
+
+  /* CARRUSEL */
+  --atelier-center-x: 0px;
+  --atelier-center-y: 8px;
+  --atelier-center-top: 60%;
+
+  /* PANEL DERECHO (info material) */
+  --panelRightX: clamp(18px, 0vw, 70px);
+  --panelRightY: 58%;
+  --panelRightW: min(300px, 20vw);
+  --atelier-right-x: -10px;
+  --atelier-right-y: 0px;
 }
 
-/* IZQUIERDA: queda como estaba, pero fijo en la escena */
+
 .scene--workshops .atelierLeft{
-  position: absolute;
-  left: clamp(18px, 4vw, 70px);
-  top: 25%;
-  width: min(260px, 20vw);
+   position: absolute;
+  left: var(--panelLeftX);
+  top: var(--panelLeftY);
+  width: var(--panelLeftW);
   z-index: 3;
 }
 
-/* CENTRO: debajo del óculo */
 .scene--workshops .atelierCenter{
   position: absolute;
   left: 50%;
-  top: 60%;
-  transform: translate(-50%, calc(-50% + var(--atelier-center-y)));
+  top: var(--atelier-center-top);
+  transform: translate(calc(-50% + var(--atelier-center-x)), calc(-50% + var(--atelier-center-y)));
   z-index: 4;
-  pointer-events: none; /* evitamos interferencias; flechas reactivan pointer */
+  pointer-events: none;
 }
-
 
 .atelierWheel{
   position: relative;
@@ -685,7 +710,6 @@ body{
   background: rgba(0,0,0,.20);
 }
 
-/* feedback sin moverlo de lugar */
 .atelierArrow:active{
   background: rgba(0,0,0,.26);
 }
@@ -719,11 +743,9 @@ body{
   border-radius: 12px;
   overflow: hidden;
 
-  /* sin contenedor visible */
   background: transparent;
   border: 0;
 
-  /* JS setea transform/opacity/z-index */
   opacity: 0;
   filter: saturate(1.02) contrast(1.02);
   will-change: transform, opacity;
@@ -738,20 +760,18 @@ body{
   object-fit: cover;
   display: block;
 
-  /* look integrado */
   border-radius: 12px;
   box-shadow:
     0 40px 90px rgba(0,0,0,.55),
     0 10px 24px rgba(0,0,0,.35);
 }
 
-/* DERECHA: texto suelto */
 .scene--workshops .atelierRight{
   position: absolute;
-  right: clamp(18px, 0vw, 70px);
-  top: 58%;
-  transform: translate(calc(var(--atelier-right-x)), calc(-50% + var(--atelier-right-y)));
-  width: min(300px, 20vw);
+  right: var(--panelRightX);
+  top: var(--panelRightY);
+  width: var(--panelRightW);
+  transform: translate(var(--atelier-right-x), calc(-50% + var(--atelier-right-y)));
   z-index: 5;
 }
 
@@ -784,7 +804,6 @@ body{
   letter-spacing: .02em;
 }
 
-/* Fade + slide del panel derecho */
 .atelierInfo{
   transition: opacity 260ms ease, transform 260ms ease;
 }
