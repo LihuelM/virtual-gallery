@@ -190,37 +190,49 @@
     </section>
 
     <!-- 5) DESPEDIDA -->
-    <section id="farewell" class="scene scene--farewell">
-      <div class="scene__bg layer" data-speed="0.03"></div>
-      <div class="scene__fog layer" data-speed="0.10"></div>
-      <div class="scene__grain"></div>
+    <section id="farewell" class="scene scene--epilogo">
+  <div class="scene__bg" aria-hidden="true"></div>
+  <div class="scene__grain"></div>
 
-      <div class="content">
-        <h2 class="title title--h2 reveal">EPÍLOGO</h2>
-        <p class="lead reveal">
-          La autoría puede ser anónima, pero la intención es clara: rescatar
-          la textura, la creatividad, el oficio y la calma. <br>
-          Gracias por recorrer. 
-          Si querés conocer piezas reales, dejá tu contacto.
+  <div class="content content--wide">
+    <p class="kicker reveal">EPÍLOGO</p>
+
+    <h2 class="title title--h2 reveal" style="text-align:center">
+      La puerta no se cierra.<br>Se transforma.
+    </h2>
+
+    <div class="epilogoGrid reveal">
+      <div class="epilogoCol">
+        <p class="kicker">Obra física</p>
+        <p class="lead">
+          Las piezas existen. Textura, peso, presencia real.<br>
+          Si querés conocer obras disponibles o futuros encargos,
+          podés comunicarte con el artista.
         </p>
 
-        <form class="form reveal" onsubmit="return false;">
-          <label class="field">
-            <span class="field__label">Email</span>
-            <input class="field__input" type="email" placeholder="tu@email.com" />
-          </label>
-
-          <label class="field">
-            <span class="field__label">Mensaje</span>
-            <textarea class="field__input field__input--area" rows="3" placeholder="Hola..."></textarea>
-          </label>
-
-          <div class="actions">
-            <a class="btn btn--primary" href="#reception">Volver a Recepción</a>
-          </div>
-        </form>
+        <a class="btn btn--primary" href="mailto:EMAIL_DEL_ARTISTA">
+          Conocer obras
+        </a>
       </div>
-    </section>
+
+      <div class="epilogoCol">
+        <p class="kicker">Experiencia digital</p>
+        <p class="lead">
+          Si lo que te cautivó fue el recorrido, el diseño o la narrativa del espacio digital,
+          podemos crear algo así para tu proyecto.
+        </p>
+
+        <a class="btn btn--primary" href="mailto:muracciole.al@gmail.com">
+          Trabajemos juntos
+        </a>
+      </div>
+    </div>
+
+    <div class="epilogoBack reveal">
+      <a class="btn btn--primary" href="#reception">Volver a Recepción</a>
+    </div>
+  </div>
+</section>
   </main>
 
   <script src="./js/app.js"></script>
