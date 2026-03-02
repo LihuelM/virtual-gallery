@@ -3,8 +3,8 @@
    ========================================================= */
 
 :root{
-  --manifesto-safe-top: 92px;     /* espacio para navbar */
-  --manifesto-safe-bottom: 60px;  /* aire abajo */
+  --manifesto-safe-top: 92px;     
+  --manifesto-safe-bottom: 60px;
   --manifesto-pad-x: clamp(18px, 5vw, 70px);
   /* --manifesto-max: 660px;         ancho del texto */
 }
@@ -74,10 +74,13 @@ body.page--manifesto{
 .scene--manifesto .title--h2{
   margin: 0 0 18px 0;
   font-size: clamp(34px, 5vw, 54px);
-  line-height: 1.06;
+  letter-spacing: .12em;
+  line-height:2.06;
   font-weight: 500;
-  color: var(--ink);
-  text-shadow: 0 16px 50px rgba(0,0,0,.55);
+  font-family: var(--serif);
+  text-transform: uppercase;
+  color: rgba(242,242,242,.92);
+  text-shadow: 0 18px 80px rgba(0,0,0,.55);
 }
 
 /* texto ajustado a 1 pantalla */
