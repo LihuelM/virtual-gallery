@@ -19,32 +19,134 @@
     line-height: 1.6;
   }
   .btn{
-    font-size: 12px;
+    font-size: 11px;
     padding: 6px 10px;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
   } 
 }
 
 /* -----------------------------
-   10) NAV
+   10) NAV  (<500px)
 -------------------------------- */
 @media (max-width: 499.98px){
+
+  /* contenedor nav */
   .nav{
+    position: fixed;
     top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100vw - 16px);
+    max-width: 420px;
+
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
     padding: 10px 12px;
-    gap: 14px;
-    max-width: calc(100vw - 16px);
+
+    overflow: visible;
+    z-index: 9999;
   }
 
-  .nav a{
-    font-size: 11px;
-    letter-spacing: .08em;
-    white-space: nowrap;
+  /* botón hamburguesa */
+  .nav__toggle{
+    display: inline-flex;
+    width: 44px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(0,0,0,.22);
+    backdrop-filter: blur(16px);
+  }
+
+  .nav__burger{
+    position: relative;
+    width: 18px;
+    height: 2px;
+    background: rgba(242,242,242,.85);
+    display: block;
+  }
+
+  .nav__burger::before,
+  .nav__burger::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:18px;
+    height:2px;
+    background: rgba(242,242,242,.85);
+  }
+
+  .nav__burger::before{ top:-6px; }
+  .nav__burger::after{ top: 6px; }
+
+  /* dropdown */
+  .nav__links{
+    display: none;
+    position: absolute;
+
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: min(320px, calc(100vw - 16px));
+    padding: 10px;
+
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.12);
+
+    background: rgba(12,12,12,.42);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 24px 80px rgba(0,0,0,.55);
+
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .nav.nav--open .nav__links{
+    display: flex;
+    animation: navDrop .18s ease-out;
+  }
+
+  @keyframes navDrop{
+    from{
+      opacity: 0;
+      transform: translateX(-50%) translateY(-6px);
+    }
+    to{
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  /* links */
+  .nav__links a{
+    width: 100%;
+    padding: 12px 12px;
+
+    border-radius: 14px;
+    font-size: 12px;
+    letter-spacing: .18em;
+    text-align: center;
+
+    opacity: .9;
+  }
+
+  .nav__links a:hover{
+    background: rgba(255,255,255,.06);
+  }
+
+  .nav__links a.active{
+    background: rgba(255,255,255,.08);
+    opacity: 1;
   }
 }
 
 /* -----------------------------
-   2)Recepcion
+   20) Recepcion
 -------------------------------- */
 @media (max-width: 499.98px){
   .lobby-card{
@@ -76,45 +178,48 @@
     text-align: left;
   }
   .scene--door.is-panel-right .door__panel{
-      left: 50%;
-    }
-    .scene--door.is-panel-right .door__panel .door__panel--btns{
-      align-items: end;
-    }
+    left: 50%;
+  }
+  .scene--door.is-panel-right .door__panel .door__panel--btns{
+    align-items: end;
+  }
   .scene--door .door__panel--btns{
     gap: 12px;
     padding: 14px 0 0;
     align-items: stretch; 
   }
   .scene--galleryIntro .scene__photo{
-    background-position: center center;
+    background-position: 38% center;
+    filter: contrast(1.05) saturate(.9) brightness(1.5);
   }
-
   .content--galleryIntro{
     grid-template-columns: 1fr;
     grid-template-rows: auto 2fr auto;
     column-gap: 0;
     padding: 92px var(--pad) 26px var(--pad);
   }
-
   .scene--galleryIntro .title{
     font-size: 42px;
     letter-spacing: .10em;
     line-height: .95;
   }
-
   .scene--galleryIntro .lead{
     grid-row: 2;
     grid-column: 1;
     max-width: 40ch;
     margin-top: 12px;
   }
-
   .content--galleryIntro .btn{
     grid-row: 3;
     grid-column: 1;
     justify-self: start;
     margin-top: 18px;
+  }
+  #gallery-room-02.scene.scene--door{
+    background-position: 42% center;
+  }
+  #gallery-room-03.scene.scene--door{
+    background-position: 27% center;
   }
 }
 
@@ -166,6 +271,69 @@
     .scene--workshops .lead{
        max-width: 42ch;
      }
+
+     /* ATELIER mobile: layout en columna + info colapsable */
+.scene--workshops{
+  min-height: auto;            /* deja de intentar “1 pantalla” */
+  padding-bottom: 26px;
+}
+
+.scene--workshops .atelierLeft{
+  width: min(520px, 92vw);
+  margin: 84px auto 14px;
+}
+
+.scene--workshops .title{
+  font-size: 40px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.scene--workshops .lead{
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 42ch;
+}
+
+/* Carrusel: más ancho y estable */
+.scene--workshops .atelierCenter{
+  width: min(520px, 92vw);
+  margin: 0 auto 14px;
+}
+
+.atelierWheel{
+  width: 100%;
+  height: 260px;               /* un poco más alto para que se disfrute */
+}
+
+/* Caja “más info” */
+.atelierMore{
+  width: min(520px, 92vw);
+  margin: 0 auto;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.22);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  padding: 10px 12px;
+}
+
+.atelierMore summary{
+  cursor: pointer;
+  list-style: none;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .9;
+}
+
+.atelierMore summary::-webkit-details-marker{ display:none; }
+
+.atelierMore__body{
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: .9;
+}
 
 }
 

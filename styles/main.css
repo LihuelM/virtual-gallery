@@ -119,6 +119,19 @@ body{
 .nav a.is-active{ color: var(--ink); }
 .nav a.is-active::after{ transform: translateX(-50%) scaleX(1); }
 
+/* a11y */
+.sr-only{
+  position:absolute!important;
+  width:1px;height:1px;
+  padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);
+  white-space:nowrap;border:0;
+}
+
+/* hamburger: base (desktop lo oculta) */
+.nav__toggle{ display:none; }
+.nav__links{ display:flex; align-items:center; gap: inherit; }
+
 /* ==========================================================================
    SCROLLER + SNAP
    IMPORTANT: NO scroll-behavior smooth acá (evita flicker con snap)
