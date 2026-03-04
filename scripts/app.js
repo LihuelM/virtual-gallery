@@ -307,7 +307,10 @@
 
     function render(){
       // radio “seguro”: no rompe layout, da buen 3D sin conflictos
-      const radius = 200;
+      // const radius = 200;
+      const isMobile = window.matchMedia("(max-width: 499.98px)").matches
+
+      const radius = isMobile ? 150 : 220
 
       cards.forEach((card, i) => {
         const rel = i - active;

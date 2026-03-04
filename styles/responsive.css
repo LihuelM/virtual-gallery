@@ -23,43 +23,62 @@
     padding: 6px 10px;
     letter-spacing: 0.1em;
   } 
+  .btn--primary{
+        outline: 1px solid rgba(201, 168, 134, .55);
+    outline-offset: 2px;
+  }
 }
 
 /* -----------------------------
    10) NAV  (<500px)
 -------------------------------- */
+/* -----------------------------
+   NAV  (<500px)
+   - Sin blur en la barra
+   - Blur solo en el dropdown
+-------------------------------- */
 @media (max-width: 499.98px){
 
-  /* contenedor nav */
+  /* Barra nav: solo botón (sin “cápsula” con blur) */
   .nav{
     position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100vw - 16px);
-    max-width: 420px;
+    top: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
+
+    width: auto;
+    max-width: none;
 
     display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-    padding: 10px 12px;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0;
+
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 
     overflow: visible;
     z-index: 9999;
   }
 
-  /* botón hamburguesa */
+  /* Botón hamburguesa */
   .nav__toggle{
-    display: inline-flex;
+    display: inline-flex; /* en desktop queda none por main.css */
     width: 44px;
-    height: 40px;
+    height: 44px;
     align-items: center;
     justify-content: center;
 
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,.12);
-    background: rgba(0,0,0,.22);
-    backdrop-filter: blur(16px);
+    border-radius: 3px;
+    border: none;
+    background: rgba(0,0,0,.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   .nav__burger{
@@ -69,7 +88,6 @@
     background: rgba(242,242,242,.85);
     display: block;
   }
-
   .nav__burger::before,
   .nav__burger::after{
     content:"";
@@ -79,31 +97,32 @@
     height:2px;
     background: rgba(242,242,242,.85);
   }
-
   .nav__burger::before{ top:-6px; }
-  .nav__burger::after{ top: 6px; }
+  .nav__burger::after { top: 6px; }
 
-  /* dropdown */
+  /* Links: dropdown con blur (acá sí) */
   .nav__links{
     display: none;
-    position: absolute;
 
-    top: calc(100% + 10px);
+    position: fixed;
+    top: 68px;
     left: 50%;
     transform: translateX(-50%);
 
-    width: min(320px, calc(100vw - 16px));
-    padding: 10px;
+    width: min(320px, calc(100vw - 20px));
+    padding: 12px;
 
-    border-radius: 18px;
+    border-radius: 3px;
     border: 1px solid rgba(255,255,255,.12);
-
-    background: rgba(12,12,12,.42);
+    background: rgba(10,10,10,.38);
     backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     box-shadow: 0 24px 80px rgba(0,0,0,.55);
 
     flex-direction: column;
     gap: 6px;
+
+    z-index: 10000;
   }
 
   .nav.nav--open .nav__links{
@@ -112,37 +131,25 @@
   }
 
   @keyframes navDrop{
-    from{
-      opacity: 0;
-      transform: translateX(-50%) translateY(-6px);
-    }
-    to{
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
+    from{ opacity: 0; transform: translateX(-50%) translateY(-6px); }
+    to  { opacity: 1; transform: translateX(-50%) translateY(0); }
   }
 
-  /* links */
   .nav__links a{
     width: 100%;
     padding: 12px 12px;
 
-    border-radius: 14px;
+    border-radius: 3px;
     font-size: 12px;
     letter-spacing: .18em;
     text-align: center;
 
-    opacity: .9;
+    color: rgba(242,242,242,.78);
+    opacity: .95;
   }
 
-  .nav__links a:hover{
-    background: rgba(255,255,255,.06);
-  }
-
-  .nav__links a.active{
-    background: rgba(255,255,255,.08);
-    opacity: 1;
-  }
+  .nav__links a:hover{ background: rgba(255,255,255,.06); }
+  .nav__links a.is-active{ background: rgba(255,255,255,.08); color: rgba(242,242,242,.92); }
 }
 
 /* -----------------------------
@@ -196,7 +203,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto 2fr auto;
     column-gap: 0;
-    padding: 92px var(--pad) 26px var(--pad);
+    padding: 0px var(--pad) 26px var(--pad);
   }
   .scene--galleryIntro .title{
     font-size: 42px;
@@ -224,117 +231,81 @@
 }
 
 /* -----------------------------
-   40) ATELIER (stack)
+   40) ATELIER (mobile como Galería)
 -------------------------------- */
 @media (max-width: 499.98px){
+
+  /* escena: padding controlado */
+  .scene--workshops{
+    padding: 0 var(--pad) 22px;
+  }
+
+  /* 1 columna: orden natural */
   .scene--workshops .atelierLeft,
   .scene--workshops .atelierCenter,
-  .scene--workshops .atelierRight{
+  .scene--workshops .atelierRight,
+  .scene--workshops .atelierMore{
     position: relative;
     left: auto;
     right: auto;
     top: auto;
     transform: none;
-    width: min(520px, 92vw);
+
+    width: 100%;
+    max-width: 520px;
     margin-left: auto;
     margin-right: auto;
   }
-  .scene--workshops .atelierLeft{
-    margin-top: 10px; 
-    margin-bottom: 15px;
-    z-index: 3;
+
+  /* Título como en Galería */
+  .scene--workshops .title{
+    font-size: 42px;
+    letter-spacing: .10em;
+    line-height: .95;
+    margin: 5px 0 10px;
   }
+
+  .scene--workshops .lead{
+    max-width: 40ch;
+    margin: 0 0 14px;
+  }
+
+  /* Carrusel: tamaño estable y compacto */
   .scene--workshops .atelierCenter{
-    margin-top: 0;
-    margin-bottom: 15px;
-    pointer-events: auto; 
-    z-index: 4;
+    margin: 10px auto 14px;
+    pointer-events: auto;
   }
+
+  .atelierWheel{
+    width: 100%;
+    height: 230px;
+    --arrow-offset-y: 45px;
+    --arrow-gap: 5px;
+    --arrow-size: 38px;
+  }
+
+  /* Panel derecho: debajo, sin aire extra */
   .scene--workshops .atelierRight{
-      margin-top: 0;
-      margin-bottom: 10px;
-      z-index: 3;
-    }
-    .atelierWheel{
-        width: min(520px, 92vw);
-        height: 230px;
-        --arrow-offset-y: 58px;
-        --arrow-gap: 10px;
-        --arrow-size: 38px;
-    }
-    .scene--workshops .title{
-        font-size: 42px;
-        letter-spacing: .10em;
-        line-height: .95;
-        margin-bottom: 12px;
-    }
-    .scene--workshops .lead{
-       max-width: 42ch;
-     }
+    margin: 40px auto 10px;
+  }
 
-     /* ATELIER mobile: layout en columna + info colapsable */
-.scene--workshops{
-  min-height: auto;            /* deja de intentar “1 pantalla” */
-  padding-bottom: 26px;
-}
-
-.scene--workshops .atelierLeft{
-  width: min(520px, 92vw);
-  margin: 84px auto 14px;
-}
-
-.scene--workshops .title{
-  font-size: 40px;
-  line-height: 1;
-  margin-bottom: 10px;
-}
-
-.scene--workshops .lead{
-  font-size: 14px;
-  line-height: 1.6;
-  max-width: 42ch;
-}
-
-/* Carrusel: más ancho y estable */
-.scene--workshops .atelierCenter{
-  width: min(520px, 92vw);
-  margin: 0 auto 14px;
-}
-
-.atelierWheel{
-  width: 100%;
-  height: 260px;               /* un poco más alto para que se disfrute */
-}
-
-/* Caja “más info” */
-.atelierMore{
-  width: min(520px, 92vw);
-  margin: 0 auto;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.22);
-  border-radius: 14px;
-  backdrop-filter: blur(12px);
-  padding: 10px 12px;
-}
-
-.atelierMore summary{
-  cursor: pointer;
-  list-style: none;
-  font-size: 12px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  opacity: .9;
-}
-
-.atelierMore summary::-webkit-details-marker{ display:none; }
-
-.atelierMore__body{
-  margin-top: 10px;
-  font-size: 14px;
-  line-height: 1.6;
-  opacity: .9;
-}
-
+  /* opcional: caja “más info” (solo si existe) */
+  .atelierMore{
+    margin: 0 auto;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(0,0,0,.22);
+    border-radius: 14px;
+    backdrop-filter: blur(12px);
+    padding: 10px 12px;
+  }
+  .atelierInfo{
+    margin-bottom: 20px;
+  }
+  .kicker.atelierInfo__kicker,
+  .atelierInfo__meta{
+    display: none;
+  }
+  
 }
 
 /* -----------------------------
