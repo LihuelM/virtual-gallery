@@ -926,7 +926,7 @@ body{
   color: var(--ink);
   text-decoration: none;
    
-  outline: 2px solid rgba(201,168,134,.55);
+  outline: 1px solid rgba(201,168,134,.55);
   outline-offset: 2px;
 }
 

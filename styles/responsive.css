@@ -32,14 +32,7 @@
 /* -----------------------------
    10) NAV  (<500px)
 -------------------------------- */
-/* -----------------------------
-   NAV  (<500px)
-   - Sin blur en la barra
-   - Blur solo en el dropdown
--------------------------------- */
 @media (max-width: 499.98px){
-
-  /* Barra nav: solo botón (sin “cápsula” con blur) */
   .nav{
     position: fixed;
     top: 12px;
@@ -68,7 +61,7 @@
 
   /* Botón hamburguesa */
   .nav__toggle{
-    display: inline-flex; /* en desktop queda none por main.css */
+    display: inline-flex;
     width: 44px;
     height: 44px;
     align-items: center;
@@ -100,7 +93,6 @@
   .nav__burger::before{ top:-6px; }
   .nav__burger::after { top: 6px; }
 
-  /* Links: dropdown con blur (acá sí) */
   .nav__links{
     display: none;
 
@@ -163,7 +155,7 @@
   }
   .lobby-card::before,
   .lobby-card::after{
-    inset: 12px; /* antes 18px */
+    inset: 12px; 
   }
 }
 /* -----------------------------
@@ -234,13 +226,10 @@
    40) ATELIER (mobile como Galería)
 -------------------------------- */
 @media (max-width: 499.98px){
-
-  /* escena: padding controlado */
   .scene--workshops{
     padding: 0 var(--pad) 22px;
   }
 
-  /* 1 columna: orden natural */
   .scene--workshops .atelierLeft,
   .scene--workshops .atelierCenter,
   .scene--workshops .atelierRight,
@@ -257,7 +246,6 @@
     margin-right: auto;
   }
 
-  /* Título como en Galería */
   .scene--workshops .title{
     font-size: 42px;
     letter-spacing: .10em;
@@ -270,7 +258,6 @@
     margin: 0 0 14px;
   }
 
-  /* Carrusel: tamaño estable y compacto */
   .scene--workshops .atelierCenter{
     margin: 10px auto 14px;
     pointer-events: auto;
@@ -284,12 +271,10 @@
     --arrow-size: 38px;
   }
 
-  /* Panel derecho: debajo, sin aire extra */
   .scene--workshops .atelierRight{
     margin: 40px auto 10px;
   }
 
-  /* opcional: caja “más info” (solo si existe) */
   .atelierMore{
     margin: 0 auto;
     border: 1px solid rgba(255,255,255,.10);
@@ -333,4 +318,289 @@
     margin-top: 40px
   }
 
+}
+
+/* =========================================================
+   500–1023px  (mobile large / tablet)
+   ========================================================= */
+
+/* -----------------------------
+   00) GLOBAL / TYPO / SPACING
+-------------------------------- */
+@media (min-width: 500px) and (max-width: 1023.98px){
+  :root{ --pad: 16px; }
+
+  .title{
+    font-size: 38px;
+    line-height: 1.02;
+    margin-bottom: 16px;
+  }
+
+  .scene--galleryIntro .title,
+  .scene--workshops .title{
+    font-size: 54px;
+    letter-spacing: .10em;
+    line-height: .95;
+  }
+
+  .lead{
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+
+  .btn{
+    font-size: 11px;
+    padding: 8px 12px;
+    letter-spacing: .14em;
+  }
+}
+
+/* -----------------------------
+   10) NAV 
+-------------------------------- */
+@media (min-width: 500px) and (max-width: 1023.98px){
+
+  /* NAV: usar desktop (links visibles) */
+  .nav__toggle{ display: none !important; }
+
+  .nav__links{
+    display: flex !important;
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+
+    width: auto !important;
+    padding: 0 !important;
+    flex-direction: row !important;
+    gap: 22px;
+
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* por si quedó la clase abierta de mobile */
+  .nav.nav--open .nav__links{ display: flex !important; }
+}
+
+/* -----------------------------
+   20) RECEPCION (card)
+-------------------------------- */
+@media (min-width: 500px) and (max-width: 1023.98px){
+  .lobby-card{
+    width: min(86vw, 640px);
+    padding: 22px 22px;
+    margin-bottom: 44px;
+  }
+  .lobby-card::before,
+  .lobby-card::after{ inset: 14px; }
+}
+
+/* -----------------------------
+   30) GALLERY INTRO (1 columna)
+-------------------------------- */
+@media (min-width: 500px) and (max-width: 1023.98px){
+  .content--galleryIntro{
+    justify-items: start;         
+    text-align: left;
+    padding-left: calc(var(--pad) + 18px);
+    padding-right: calc(var(--pad) + 18px);
+  }
+
+  .scene--galleryIntro .lead{
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 58ch;
+  }
+
+  .content--galleryIntro .btn{
+    justify-self: end;
+  }
+}
+
+/* -----------------------------
+   35) DOORS (panel abajo centrado)
+-------------------------------- */
+@media (min-width: 500px) and (max-width: 1023.98px){
+  .scene--door{
+    --panelX: 18px;
+    --panelY: auto;
+    --panelW: min(640px, 92vw);
+  }
+
+  .scene--door .door__panel{
+    top: auto;
+    bottom: 22px;
+    left: 43%;
+    right: auto;
+    transform: translateX(-50%);
+    width: var(--panelW);
+    text-align: left;
+  }
+
+  .scene--door.is-panel-right .door__panel{ left: 57%; }
+
+  .scene--door .door__panel--btns{
+    gap: 12px;
+    padding: 14px 0 0;
+    align-items: end;
+  }
+  
+  #gallery-room-03.scene.scene--door {
+    background-position: 38% center;
+  }
+}
+
+/* -----------------------------
+   40) ATELIER (tablet = 1 columna compacta)
+-------------------------------- */
+@media (min-width: 500px) and (max-width: 1023.98px){
+   .scene--workshops {
+    --leadShiftY: 25px;
+  }
+  .scene--workshops{
+    padding: 0 var(--pad) 28px;
+  }
+
+  .scene--workshops .atelierLeft,
+  .scene--workshops .atelierCenter,
+  .scene--workshops .atelierRight{
+    position: relative;
+    left: auto;
+    right: auto;
+    top: 60px;
+    transform: none;
+
+    width: 100%;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .scene--workshops .lead{
+    max-width: 56ch;
+    margin: 0px;
+    top: var(--leadShiftY);
+  }
+
+  .scene--workshops .atelierCenter{
+    margin: 14px auto 18px;
+    pointer-events: auto;
+  }
+
+  .atelierWheel{
+    width: 100%;
+    height: 150px;
+    --arrow-offset-y: 95px;
+    --arrow-gap: 10px;
+    --arrow-size: 35px;
+  }
+
+  .scene--workshops .atelierRight{
+    margin: 46px auto 10px;
+  }
+
+  .atelierInfo{ margin-bottom: 18px; }
+  .kicker.atelierInfo__kicker,
+  .atelierInfo__meta{
+    display: none;
+  }
+}
+
+/* -----------------------------
+   60) EPILOGO (1 col hasta 1024)
+-------------------------------- */
+@media (min-width: 500px) and (max-width: 1023.98px){
+  .epilogoGrid{
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+    margin-top: 46px;
+  }
+
+  .epilogoCol .lead{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 22px;
+  }
+
+  .epilogoBack{ margin-top: 42px; }
+}
+
+
+/* =========================================================
+   1024–1399px  (desktop base / laptop)
+   ========================================================= */
+
+/* -----------------------------
+   00) GLOBAL / PAD
+-------------------------------- */
+@media (min-width: 1024px) and (max-width: 1399.98px){
+  :root{ --pad: 26px; }
+}
+
+/* -----------------------------
+   30) GALLERY INTRO 
+-------------------------------- */
+@media (min-width: 1024px) and (max-width: 1399.98px){
+  .scene--galleryIntro{
+    --maxContent: 1180px;
+    --leadMax: 50ch;
+    --padTop: 96px;
+    --padBottom: 32px;
+  }
+
+  .scene--galleryIntro .scene__photo{
+    background-position: 70% center;
+  }
+}
+
+/* -----------------------------
+   35) DOORS (ajuste fino paneles)
+-------------------------------- */
+@media (min-width: 1024px) and (max-width: 1399.98px){
+  /* panel un poco más compacto */
+  .scene--door{
+    --panelW: min(520px, 82vw);
+  }
+
+  /* recorta offsets exagerados que hoy están hardcodeados por sala */
+  #gallery-room-01{ --panelX: 86px; --panelY: 210px; }
+  #gallery-room-02{ --panelX: 74px; --panelY: 220px; }
+  #gallery-room-03{ --panelX: 86px; --panelY: 150px; }
+}
+
+/* -----------------------------
+   40) ATELIER (laptop: mantiene 3 paneles, pero más compacto)
+-------------------------------- */
+@media (min-width: 1024px) and (max-width: 1399.98px){
+  .scene--workshops{
+    --panelLeftY: 26%;
+    --panelLeftW: min(320px, 26vw);
+
+    --atelier-center-top: 62%;
+
+    --panelRightY: 60%;
+    --panelRightW: min(340px, 28vw);
+  }
+
+  .atelierWheel{
+    width: min(420px, 46vw);
+    height: 270px;
+  }
+
+  .atelierInfo__desc{ font-size: 13.5px; }
+}
+
+/* -----------------------------
+   60) EPILOGO (laptop)
+-------------------------------- */
+@media (min-width: 1024px) and (max-width: 1399.98px){
+  .epilogoGrid{
+    gap: clamp(22px, 3vw, 44px);
+    margin-top: 70px;
+  }
+  .epilogoCol .lead{ max-width: 50ch; }
 }
