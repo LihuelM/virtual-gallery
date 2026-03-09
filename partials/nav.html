@@ -1,14 +1,31 @@
-<nav class="nav" aria-label="Navegación de salas">
+<nav class="nav" aria-label="Navegación principal">
   <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="navMenu">
     <span class="nav__burger" aria-hidden="true"></span>
     <span class="sr-only">Abrir menú</span>
   </button>
 
   <div id="navMenu" class="nav__links">
-    <a href="#reception" data-nav>Recepción</a>
-    <a href="#gallery" data-nav>Galería</a>
-    <a href="#workshops" data-nav>Atelier</a>
-    <a href="manifesto.html">Manifiesto</a>
-    <a href="#farewell" data-nav>Epílogo</a>
+    <a data-route="reception" href="#">Recepción</a>
+
+    <div class="nav__item nav__item--has-submenu">
+      <button
+        class="nav__submenu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="gallerySubmenu"
+      >
+        <span>Galería</span>
+      </button>
+
+      <div id="gallerySubmenu" class="nav__submenu">
+        <a data-route="room-01" href="#">Sala I · Materia</a>
+        <a data-route="room-02" href="#">Sala II · Trama</a>
+        <a data-route="room-03" href="#">Sala III · Símbolo</a>
+      </div>
+    </div>
+
+    <a data-route="workshops" href="#">Atelier</a>
+    <a data-route="manifesto" href="#">Manifiesto</a>
+    <a data-route="farewell" href="#">Epílogo</a>
   </div>
 </nav>

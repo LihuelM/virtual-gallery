@@ -402,7 +402,12 @@
    30) GALLERY INTRO (1 columna)
 -------------------------------- */
 @media (min-width: 500px) and (max-width: 1023.98px){
+  .scene--galleryIntro .scene__photo{
+    background-position: 50% center;
+    filter: contrast(1.05) saturate(.9) brightness(.95);
+  }
   .content--galleryIntro{
+    grid-template-columns: 1.5fr 1fr;
     justify-items: start;         
     text-align: left;
     padding-left: calc(var(--pad) + 18px);
