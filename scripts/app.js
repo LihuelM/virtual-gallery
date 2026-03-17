@@ -1,21 +1,26 @@
 (() => {
-  const scroller = document.querySelector(".experience");
-  const scenes = Array.from(document.querySelectorAll(".scene"));
-  const navLinks = Array.from(document.querySelectorAll("[data-nav]"));
-  const layers = Array.from(document.querySelectorAll(".layer[data-speed]"));
-
-  if (!scroller || !scenes.length) return;
 
   // ---------------------------
-  // Spotlight (mouse light)
+  // CURSOR / SPOTLIGHT (SIEMPRE)
   // ---------------------------
   const finePointer = matchMedia("(pointer:fine)").matches;
+
   if (finePointer) {
     window.addEventListener("mousemove", (e) => {
       document.documentElement.style.setProperty("--mx", `${e.clientX}px`);
       document.documentElement.style.setProperty("--my", `${e.clientY}px`);
     }, { passive: true });
   }
+
+  // ---------------------------
+  // CONTENIDO SOLO INDEX / PÁGINAS CON EXPERIENCE
+  // ---------------------------
+  const scroller = document.querySelector(".experience");
+  const scenes = Array.from(document.querySelectorAll(".scene"));
+  const navLinks = Array.from(document.querySelectorAll("[data-nav]"));
+  const layers = Array.from(document.querySelectorAll(".layer[data-speed]"));
+
+  if (!scroller || !scenes.length) return;
 
   // ---------------------------
   // Reveals + Active Nav

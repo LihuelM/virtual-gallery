@@ -9,9 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="./styles/main.css">
-  <link rel="stylesheet" href="./styles/responsive.css" />
-  <link rel="stylesheet" href="./styles/manifesto.css">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/nav.css" />
+  <link rel="stylesheet" href="../styles/responsive.css" />
+  <link rel="stylesheet" href="../styles/manifesto.css">
 
 </head>
 
@@ -19,13 +20,7 @@
   <div class="spotlight" aria-hidden="true"></div>
   <div class="cursor-ring" aria-hidden="true"></div>
 
-  <nav class="nav" aria-label="Navegación de salas">
-    <a href="./index.html#reception">Recepción</a>
-    <a href="./index.html#gallery">Galería</a>
-    <a href="./index.html#workshops">Atelier</a>
-    <a href="./manifesto.html" class="is-active">Manifiesto</a>
-    <a href="./index.html#farewell">Despedida</a>
-  </nav>
+  <div id="siteNav"></div>
 
   <main class="pageMain" aria-label="Manifiesto">
     <section class="scene scene--manifesto" aria-label="Sección Manifiesto">
@@ -50,11 +45,14 @@
         </p>
         
         <div class="actions">
-          <a class="btn btn--primary" href="./index.html#gallery" aria-label="Volver al recorrido">Retomar el intinerario →</a>
+          <a class="btn btn--primary" href="../index.html#gallery" aria-label="Volver al recorrido">Retomar el intinerario →</a>
         </div>
       </div>
     </section>
   </main>
+
+  <script src="../scripts/app.js"></script>
+  <script src="../scripts/nav.js" defer></script>
 
 </body>
 </html>

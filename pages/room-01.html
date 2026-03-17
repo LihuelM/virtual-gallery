@@ -7,11 +7,17 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="../styles/nav.css" />
   <link rel="stylesheet" href="../styles/responsive.css" />
   <link rel="stylesheet" href="../styles/rooms.css" />
 </head>
 
 <body class="page--room">
+  <!-- Luz que sigue el mouse -->
+  <div class="spotlight" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Navbar -->
   <div id="siteNav"></div>
 
   <main class="experience" aria-label="Sala 01">
@@ -42,6 +48,7 @@
     </section>
   </main>
 
+  <script src="../scripts/app.js"></script>
   <script src="../scripts/nav.js" defer></script>
 </body>
 </html>
